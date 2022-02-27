@@ -2,6 +2,7 @@ import getMongoInstance from "./db/index.js";
 import express from "express";
 import bodyParser from "body-parser";
 import Score from "./schema/score.js";
+import cors from "cors";
 
 const PORT = process.env.PORT || "8080";
 
@@ -12,7 +13,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
-
+app.use(cors());
 app.get("/list", async (req, res) => {
   try {
     const data = await Score.find({});
